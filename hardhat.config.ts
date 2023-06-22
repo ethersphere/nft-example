@@ -32,14 +32,7 @@ const config: HardhatUserConfig = {
         process.env.GNOSIS_PRIVATE_KEY !== undefined
           ? [process.env.GNOSIS_PRIVATE_KEY]
           : [],
-    },
-    polygon: {
-      url: process.env.POLYGON_URL || "",
-      accounts:
-        process.env.POLYGON_PRIVATE_KEY !== undefined
-          ? [process.env.POLYGON_PRIVATE_KEY]
-          : [],
-    },
+    }
   },
   gasReporter: {
     enabled: process.env.REPORT_GAS !== undefined,

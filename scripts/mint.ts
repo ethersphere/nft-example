@@ -2,25 +2,11 @@ import { ethers } from "hardhat";
 import { Bee } from "@ethersphere/bee-js";
 import * as fs from "fs";
 
-//dev constants, comment out for prod
-const BEE_URI = "http://localhost:1633";
-const GATEWAY_ADDRESS = "http://localhost:1633";
-const TOKEN_ADDRESS = "0x..."; // localhost
-const TO_ADDRESS = "0x..."; // localhost
-const POSTAGE_BATCH_ID =
-   "..."; //no 0x prefix required
+const BEE_URL = "http://localhost:1633";
+const TOKEN_ADDRESS = "0x..."; 
+const TO_ADDRESS = "0x...";
 const TOKEN_ID = 0;
-//end dev constants
-
-//prod constants, comment out for dev
-// const BEE_URI = "http://localhost:1633";
-// const GATEWAY_ADDRESS = "https://api.gateway.ethswarm.org";
-// const TOKEN_ADDRESS = "0x..."; 
-// const TO_ADDRESS = "0x...";
-// const TOKEN_ID = 0;
-// const POSTAGE_BATCH_ID =
-//   "..."; //no 0x prefix required
-//end prod] constants
+const POSTAGE_BATCH_ID = "..."; //no 0x prefix required
 
 const FILE_NAME = "bee.png";
 const TOKEN_IMAGE_PATH = "./resources/" + FILE_NAME;
@@ -50,7 +36,7 @@ async function main() {
   // upload the NFT image to Swarm
   var fileContents = fs.readFileSync(TOKEN_IMAGE_PATH);
 
-  let bee = new Bee(BEE_URI);
+  let bee = new Bee(BEE_URL);
 
   let response;
 
@@ -63,11 +49,11 @@ async function main() {
     throw error;
   }
 
-  //create gateway url for NFT image using returned Swarm address
+  //create url for NFT image using returned Swarm address
   const imageURI =
-    GATEWAY_ADDRESS + "/bzz/" + response.reference + "/" + FILE_NAME;
+    BEE_URL + "/bzz/" + response.reference + "/" + FILE_NAME;
 
-  //append the image gateway path path to metadata object
+  //append the image path to metadata object
   const tokenMeta = TOKEN_META;
   tokenMeta.image = imageURI;
 
@@ -85,9 +71,9 @@ async function main() {
     throw error;
   }
 
-  //create gateway url for the NFT metadata using returned Swarm address
+  //create url for the NFT metadata using returned Swarm address
   const metaURL =
-    GATEWAY_ADDRESS + "/bzz/" + response2.reference + "/" + META_FILE_NAME;
+    BEE_URL + "/bzz/" + response2.reference + "/" + META_FILE_NAME;
 
 
   //mint the NFT using the metadata url  
