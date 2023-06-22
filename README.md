@@ -11,18 +11,15 @@ It is intended as an easy example for you to enjoy that can then be built upon t
 - `node = 16`
 - [Swarm Desktop](https://docs.ethswarm.org/docs/desktop/introduction) running a [light node funded with some BZZ and XDAI](https://docs.ethswarm.org/docs/desktop/configuration#upgrading-from-an-ultra-light-to-a-light-node)
 
-## Install
-
-```npm i```
-
 ## NFT on Gnosischain 
 
 Now, let's deploy your NFT on the Gnosis blockchain!
 
-### Clone repository
+### Clone repository and install packages
 ```
 git clone https://github.com/rampall/nft-example.git
 cd nft-example
+npm i
 ```
 
 ### Deploy NFT contract
