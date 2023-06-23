@@ -1,6 +1,6 @@
-# NFT Example Project
+# NFT metadata on Swarm for new-bees 🐝👶
 
-Create our own [Beelon Musk NFT](https://gnosis.nftscan.com/0xC79D13E7135d4B24BfAaCBF3C4A4f5Caf9De7a2C/0)!
+Create our own [Beelon Musk NFT](https://raw.githubusercontent.com/rampall/nft-example/main/resources/bee.png)
 
 This is an extremely simple NFT example project. It deploys an NFT contract and mints one NFT where the data is stored on Swarm.
 
@@ -43,5 +43,5 @@ npm i
 
 12. In Metamask, with your `TO_ADDRESS` account selected, select network 'Gnosis Chain', click `NFT` then scroll down and select `Import NFTs`.
 13. Copy the NFT contract address from step x into the `Address` field and input `0` as the `Token ID`.
-14. You should be able to see your Bee NFT in your Metamask wallet, keep it, or send it to a friend!
-15. Replace `{{0x...}}` in this url with your contract address from step x and open the link `https://gnosis.nftscan.com/{{0x...}}/0`, you should bee able to see your NFT on nftscan!
+14. You should be able to see your own Beelon Musk NFT in your Metamask wallet, keep it, or send it to a friend!
+15. Replace `{{0x...}}` in this url with your contract address from step x and open the link `https://gnosis.nftscan.com/{{0x...}}/0`, you should bee able to see your Beelon Musk NFT on nftscan!
