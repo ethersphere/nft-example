@@ -1,4 +1,4 @@
-# NFT Example Project
+# NFT metadata on Swarm for new-bees 🐝👶
 
 Create our own [Beelon Musk NFT](https://gnosis.nftscan.com/0xC79D13E7135d4B24BfAaCBF3C4A4f5Caf9De7a2C/0)!
 
