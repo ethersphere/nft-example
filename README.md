@@ -43,5 +43,5 @@ npm i
 
 12. In Metamask, with your `TO_ADDRESS` account selected, select network 'Gnosis Chain', click `NFT` then scroll down and select `Import NFTs`.
 13. Copy the NFT contract address from step x into the `Address` field and input `0` as the `Token ID`.
-14. You should be able to see your Bee NFT in your Metamask wallet, keep it, or send it to a friend!
-15. Replace `{{0x...}}` in this url with your contract address from step x and open the link `https://gnosis.nftscan.com/{{0x...}}/0`, you should bee able to see your NFT on nftscan!
+14. You should be able to see your own Beelon Musk NFT in your Metamask wallet, keep it, or send it to a friend!
+15. Replace `{{0x...}}` in this url with your contract address from step x and open the link `https://gnosis.nftscan.com/{{0x...}}/0`, you should bee able to see your Beelon Musk NFT on nftscan!
