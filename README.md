@@ -1,6 +1,6 @@
 # NFT metadata on Swarm for new-bees 🐝👶
 
-Create our own [Beelon Musk NFT](https://raw.githubusercontent.com/rampall/nft-example/main/resources/bee.png)
+Create our own [Beelon Musk NFT](https://gnosis.nftscan.com/0x9c54ca225afdc916ab1888a2fbc4dba46431b18b)
 
 This is an extremely simple NFT example project. It deploys an NFT contract and mints one NFT where the data is stored on Swarm.
 
