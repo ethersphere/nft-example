@@ -3,6 +3,7 @@ import { Bee } from "@ethersphere/bee-js";
 import * as fs from "fs";
 
 const BEE_URL = "http://localhost:1633";
+const GATEWAY_ADDRESS = "https://api.gateway.ethswarm.org";
 const TOKEN_ADDRESS = "0x..."; 
 const TO_ADDRESS = "0x...";
 const TOKEN_ID = 0;
@@ -51,7 +52,7 @@ async function main() {
 
   //create url for NFT image using returned Swarm address
   const imageURI =
-    BEE_URL + "/bzz/" + response.reference + "/" + FILE_NAME;
+    GATEWAY_ADDRESS + "/bzz/" + response.reference + "/" + FILE_NAME;
 
   //append the image path to metadata object
   const tokenMeta = TOKEN_META;
@@ -73,7 +74,7 @@ async function main() {
 
   //create url for the NFT metadata using returned Swarm address
   const metaURL =
-    BEE_URL + "/bzz/" + response2.reference + "/" + META_FILE_NAME;
+    GATEWAY_ADDRESS + "/bzz/" + response2.reference + "/" + META_FILE_NAME;
 
 
   //mint the NFT using the metadata url  
