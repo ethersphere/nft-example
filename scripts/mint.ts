@@ -2,12 +2,18 @@ import { ethers } from "hardhat";
 import { Bee } from "@ethersphere/bee-js";
 import * as fs from "fs";
 
-const BEE_URL = "http://localhost:1633";
-const GATEWAY_ADDRESS = "https://api.gateway.ethswarm.org";
-const TOKEN_ADDRESS = "0x..."; 
-const TO_ADDRESS = "0x...";
-const TOKEN_ID = 0;
-const POSTAGE_BATCH_ID = "..."; //no 0x prefix required
+import * as dotenv from "dotenv";
+dotenv.config();
+
+const BEE_URL = process.env.BEE_URL || "http://localhost:1633";
+// const GATEWAY_ADDRESS = "https://api.gateway.ethswarm.org";
+const BEE_GATEWAY_URL = process.env.BEE_GATEWAY_URL || "http://localhost:1633";
+const NFT_TOKEN_ADDRESS = process.env.NFT_TOKEN_ADDRESS || "0x..."; 
+const NFT_TO_ADDRESS = process.env.NFT_TO_ADDRESS || "0x...";
+const NFT_TOKEN_ID = 0;
+const POSTAGE_BATCH_ID = process.env.POSTAGE_BATCH_ID || "..."; 
+
+console.log({BEE_URL,GATEWAY_ADDRESS: BEE_GATEWAY_URL,NFT_TOKEN_ADDRESS,NFT_TOKEN_ID,NFT_TO_ADDRESS,POSTAGE_BATCH_ID});
 
 const FILE_NAME = "bee.png";
 const TOKEN_IMAGE_PATH = "./resources/" + FILE_NAME;
@@ -36,15 +42,14 @@ async function main() {
 
   // upload the NFT image to Swarm
   var fileContents = fs.readFileSync(TOKEN_IMAGE_PATH);
-
+  
+  console.log(fileContents);
   let bee = new Bee(BEE_URL);
-
+  
   let response;
 
-  try {
-    response = await bee.uploadFile(POSTAGE_BATCH_ID, fileContents, FILE_NAME, {
-      pin: true,
-    });
+   try {
+    response = await bee.uploadFile(POSTAGE_BATCH_ID, fileContents, FILE_NAME);
     console.log("uploaded image, reference:", response.reference);
   } catch (error: any) {
     throw error;
@@ -52,7 +57,7 @@ async function main() {
 
   //create url for NFT image using returned Swarm address
   const imageURI =
-    GATEWAY_ADDRESS + "/bzz/" + response.reference + "/" + FILE_NAME;
+    BEE_GATEWAY_URL + "/bzz/" + response.reference + "/" + FILE_NAME;
 
   //append the image path to metadata object
   const tokenMeta = TOKEN_META;
@@ -74,23 +79,25 @@ async function main() {
 
   //create url for the NFT metadata using returned Swarm address
   const metaURL =
-    GATEWAY_ADDRESS + "/bzz/" + response2.reference + "/" + META_FILE_NAME;
+    BEE_GATEWAY_URL + "/bzz/" + response2.reference + "/" + META_FILE_NAME;
 
 
   //mint the NFT using the metadata url  
   const BeeNFTFactory = await ethers.getContractFactory("BeeNFT");
-  const BeeNFT = await BeeNFTFactory.attach(TOKEN_ADDRESS);
-
-  const mintTx = await BeeNFT.safeMint(TO_ADDRESS, TOKEN_ID, metaURL);
+  console.log(1)
+  const BeeNFT = await BeeNFTFactory.attach(NFT_TOKEN_ADDRESS);
+  console.log(2)
+  const mintTx = await BeeNFT.safeMint(NFT_TO_ADDRESS, NFT_TOKEN_ID, metaURL);
+  console.log(3)
   const receipt = await mintTx.wait();
 
   //check it worked
-  const tokenURI = await BeeNFT.tokenURI(TOKEN_ID);
+  const tokenURI = await BeeNFT.tokenURI(NFT_TOKEN_ID);
+  console.log(`success! minted token with id: ${NFT_TOKEN_ID}, metadata url ${tokenURI}`);
 
-  console.log(`success! minted token with id: ${TOKEN_ID}, metadata url ${tokenURI}`);
 }
 
 main().catch((error) => {
-  console.error(error);
-  process.exitCode = 1;
+  console.log(error);
+  // process.exitCode = 1;
 });
